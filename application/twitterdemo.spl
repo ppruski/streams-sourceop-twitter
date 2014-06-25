@@ -5,6 +5,7 @@ composite twitterdemo
 	graph
 		stream<rstring user, rstring lang, list<ustring> hashtag, rstring text> TwitterSource_out = TwitterSource()
 		{
+			// TODO: change search param's
 			param
 				filter : "worldcup", "fifa", "football", "fifa2014", "brazil2014", "soccer", "brasil2014", "fifaworldcup" ;
 		}
