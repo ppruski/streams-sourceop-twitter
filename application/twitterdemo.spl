@@ -1,0 +1,32 @@
+namespace application ;
+
+composite twitterdemo
+{
+	graph
+		stream<rstring user, rstring lang, list<ustring> hashtag, rstring text> TwitterSource_out = TwitterSource()
+		{
+			param
+				filter : "worldcup", "fifa", "football", "fifa2014", "brazil2014", "soccer", "brasil2014", "fifaworldcup" ;
+		}
+		
+		// TODO: you can optionally add some analytical operators here. Text analytics for instance. 
+		
+		// simply write the Tweets to the FIFA_World_Cup.txt file in this project
+		() as Sink_file = FileSink(TwitterSource_out)
+		{
+			param
+				file : "FIFA_World_Cup.txt" ;
+				flush : 1u ; 
+		}
+		
+		// to be used only if running in Standalone mode. Will not display anything in distributed environment.
+		() as Sink_console = Custom(TwitterSource_out)
+		{
+			logic
+				onTuple TwitterSource_out: println(TwitterSource_out) ;
+		}
+
+}
+
+
+

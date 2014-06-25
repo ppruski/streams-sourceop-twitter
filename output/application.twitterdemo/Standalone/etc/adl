@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application" name="application::twitterdemo.appset" productVersion="3.1.0.0" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::twitterdemo application set</description>
+
+  <application applicationDirectory="../../../." applicationScope="Default" checkpointDirectory="../../../data/ckpt" dataDirectory="../../../data" name="application::twitterdemo" outputDirectory="/home/stradmin/labs/twitter-piotr/streams-sourceop-twitter/output/application.twitterdemo/Standalone" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="user" type="rstring"/>
+        <attribute name="lang" type="rstring"/>
+        <attribute name="hashtag" type="list&lt;ustring>"/>
+        <attribute name="text" type="rstring"/>
+        <tuple>
+          <tt:attr name="user" type="rstring"/>
+          <tt:attr name="lang" type="rstring"/>
+          <tt:attr name="hashtag">
+            <tt:list elementType="ustring"/>
+          </tt:attr>
+          <tt:attr name="text" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <pes>
+      <pe class="BeJwzNArOzMuOT87PK87PSY23BPPSMoFMQ_1OQ8sySktSi4PzSouTU_0PzSkngAlA8RC4" index="0" language="C++" optimized="false" relocatable="false" restartable="false">
+        <envVars>
+          <envVar name="STREAMS_JAVA_HOME" value="/opt/ibm/java-x86_64-60"/>
+        </envVars>
+        <executable digest="Xu5qvYtX+TWHmLVS4tsjdjulDvY=" dynamicLoad="true">
+          <wrapper>none</wrapper>
+          <executableUri>bin/application.twitterdemo-a.dpe</executableUri>
+          <arguments/>
+          <dependencies/>
+        </executable>
+        <operInstances>
+          <operInstance class="TwitterSource_out" definitionIndex="0" index="0" name="TwitterSource_out" singleThreadedOnInputs="true" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;worldcup&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;fifa&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;football&quot;"/>
+              <runtimeConstant name="lit$3" value="&quot;fifa2014&quot;"/>
+              <runtimeConstant name="lit$4" value="&quot;brazil2014&quot;"/>
+              <runtimeConstant name="lit$5" value="&quot;soccer&quot;"/>
+              <runtimeConstant name="lit$6" value="&quot;brasil2014&quot;"/>
+              <runtimeConstant name="lit$7" value="&quot;fifaworldcup&quot;"/>
+            </runtimeConstants>
+            <inputPorts/>
+            <outputPorts>
+              <outputPort index="0" isMutable="true" name="TwitterSource_out" streamName="TwitterSource_out" tupleTypeIndex="0" viewable="true">
+                <intraPeConnection iportIndex="0" operInstanceIndex="1"/>
+                <intraPeConnection iportIndex="0" operInstanceIndex="2"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+          <operInstance class="Sink_file" definitionIndex="1" index="1" name="Sink_file" singleThreadedOnInputs="false" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;FIFA_World_Cup.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="1"/>
+            </runtimeConstants>
+            <inputPorts>
+              <inputPort index="0" isMutable="false" name="TwitterSource_out" tupleTypeIndex="0">
+                <intraPeConnection operInstanceIndex="0" oportIndex="0"/>
+              </inputPort>
+            </inputPorts>
+            <outputPorts/>
+          </operInstance>
+          <operInstance class="Sink_console" definitionIndex="2" index="2" name="Sink_console" singleThreadedOnInputs="false" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <inputPorts>
+              <inputPort index="0" isMutable="false" name="TwitterSource_out" tupleTypeIndex="0">
+                <intraPeConnection operInstanceIndex="0" oportIndex="0"/>
+              </inputPort>
+            </inputPorts>
+            <outputPorts/>
+          </operInstance>
+        </operInstances>
+        <tracing level="error"/>
+        <inputPorts/>
+        <outputPorts/>
+      </pe>
+    </pes>
+    <operDefinitions>
+      <operDefinition index="0" kind="application::TwitterSource"/>
+      <operDefinition index="1" kind="spl.adapter::FileSink">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </operDefinition>
+      <operDefinition index="2" kind="spl.utility::Custom"/>
+    </operDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/stradmin/labs/twitter-piotr/streams-sourceop-twitter/application/twitterdemo.spl"/>
+      </sourceUris>
+      <compositeOpers>
+        <compositeOper endLine="29" index="0" kind="application::twitterdemo" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::twitterdemo Composite</description>
+        </compositeOper>
+      </compositeOpers>
+      <compositeOperInstances>
+        <compositeOperInstance compositeOperIndex="0" endLine="29" index="3" name="application::twitterdemo" sourceIndex="0" startLine="3">
+          <primitiveOperInstance endLine="10" index="0" kind="application::TwitterSource" name="TwitterSource_out" sourceIndex="0" startLine="6" toolkitIndex="0">
+            <outputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="2" operName="Sink_console" portIndex="0" portKind="input"/>
+                  <connection operIndex="1" operName="Sink_file" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="20" index="1" kind="spl.adapter::FileSink" name="Sink_file" sourceIndex="0" startLine="15" toolkitIndex="1">
+            <inputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="0" operName="TwitterSource_out" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="27" index="2" kind="spl.utility::Custom" name="Sink_console" sourceIndex="0" startLine="23" toolkitIndex="1">
+            <inputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="0" operName="TwitterSource_out" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="streams-sourceop-twitter" uri="file:///home/stradmin/labs/twitter-piotr/streams-sourceop-twitter" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphereStreams/toolkits/spl" version="1.1.0"/>
+      <toolkit index="2" name="com.ibm.streams.db" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.db" version="1.0.0"/>
+      <toolkit index="3" name="com.ibm.streams.inet" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.inet" version="1.0.0"/>
+      <toolkit index="4" name="com.ibm.streams.mining" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.mining" version="1.0.0"/>
+      <toolkit index="5" name="com.ibm.streams.text" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.text" version="1.0.2"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>Number of files opened by the FileSink operator</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nTupleWriteErrors">
+        <description>Number of tuple writes that failed</description>
+      </customMetric>
+    </customMetrics>
+  </application>
+
+</applicationSet>

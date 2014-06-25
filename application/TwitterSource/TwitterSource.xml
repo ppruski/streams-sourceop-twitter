@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operatorModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator" xmlns:cmn="http://www.ibm.com/xmlns/prod/streams/spl/common" xsi:schemaLocation="http://www.ibm.com/xmlns/prod/streams/spl/operator operatorModel.xsd">
+  <javaOperatorModel>
+    <context>
+      <description>Java Operator TwitterSource</description>
+      <executionSettings>
+        <className>application.TwitterSource</className>
+      </executionSettings>
+      <libraryDependencies>
+        <library>
+          <cmn:description>Java operator class library</cmn:description>
+          <cmn:managedLibrary>
+            <cmn:libPath>../../impl/java/bin</cmn:libPath>
+            <cmn:libPath>../../impl/lib/twitter4j-async-4.0.1.jar</cmn:libPath>
+            <cmn:libPath>../../impl/lib/twitter4j-core-4.0.1.jar</cmn:libPath>
+            <cmn:libPath>../../impl/lib/twitter4j-stream-4.0.1.jar</cmn:libPath>
+          </cmn:managedLibrary>
+        </library>
+      </libraryDependencies>
+    </context>
+    <parameters>
+      <description></description>
+      <parameter>
+        <name>filter</name>
+        <description/>
+        <optional>true</optional>
+        <type>rstring</type>
+        <cardinality>-1</cardinality>
+      </parameter>
+    </parameters>
+    <inputPorts/>
+    <outputPorts>
+      <outputPortSet>
+        <description>Port that produces tuples</description>
+        <windowPunctuationOutputMode>Generating</windowPunctuationOutputMode>
+        <windowPunctuationInputPort>-1</windowPunctuationInputPort>
+        <cardinality>1</cardinality>
+        <optional>false</optional>
+      </outputPortSet>
+      <outputPortOpenSet>
+        <windowPunctuationOutputMode>Generating</windowPunctuationOutputMode>
+        <windowPunctuationInputPort>-1</windowPunctuationInputPort>
+      </outputPortOpenSet>
+    </outputPorts>
+  </javaOperatorModel>
+</operatorModel>

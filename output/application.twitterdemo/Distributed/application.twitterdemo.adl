@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application" name="application::twitterdemo.appset" productVersion="3.1.0.0" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>application::twitterdemo application set</description>
+
+  <application applicationDirectory="../../../." applicationScope="Default" checkpointDirectory="../../../data/ckpt" dataDirectory="../../../data" name="application::twitterdemo" outputDirectory="/home/stradmin/labs/twitter-piotr/twitter-demo/output/application.twitterdemo/Distributed" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="user" type="rstring"/>
+        <attribute name="lang" type="rstring"/>
+        <attribute name="hashtag" type="list&lt;ustring>"/>
+        <attribute name="text" type="rstring"/>
+        <tuple>
+          <tt:attr name="user" type="rstring"/>
+          <tt:attr name="lang" type="rstring"/>
+          <tt:attr name="hashtag">
+            <tt:list elementType="ustring"/>
+          </tt:attr>
+          <tt:attr name="text" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <pes>
+      <pe class="BeJwzNA8pzywpSS0Kzi8tSk6Nzy8tiQcATt0HDj" index="0" language="C++" optimized="false" relocatable="false" restartable="false">
+        <envVars>
+          <envVar name="STREAMS_JAVA_HOME" value="/opt/ibm/java-x86_64-60"/>
+        </envVars>
+        <executable digest="Xu5qvYtX+TWHmLVS4tsjdjulDvY=" dynamicLoad="true">
+          <wrapper>none</wrapper>
+          <executableUri>bin/application.twitterdemo-a.dpe</executableUri>
+          <arguments/>
+          <dependencies/>
+        </executable>
+        <operInstances>
+          <operInstance class="TwitterSource_out" definitionIndex="0" index="0" name="TwitterSource_out" singleThreadedOnInputs="true" singleThreadedOnOutputs="false">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;TWTR&quot;"/>
+            </runtimeConstants>
+            <inputPorts/>
+            <outputPorts>
+              <outputPort index="0" isMutable="true" name="TwitterSource_out" streamName="TwitterSource_out" tupleTypeIndex="0" viewable="true">
+                <interPeConnection iportIndex="0" operInstanceIndex="1"/>
+              </outputPort>
+            </outputPorts>
+          </operInstance>
+        </operInstances>
+        <tracing level="error"/>
+        <inputPorts/>
+        <outputPorts>
+          <outputPort encoding="LE" index="0" singleThreadedOnOutput="false" transport="TCP" tupleTypeIndex="0">
+            <staticConnections>
+              <staticConnection iportIndex="0" peIndex="1"/>
+            </staticConnections>
+            <operInstanceConnection operInstanceIndex="0" oportIndex="0"/>
+          </outputPort>
+        </outputPorts>
+      </pe>
+      <pe class="BeJwzCc7My44HAAcAAIp" index="1" language="C++" optimized="false" relocatable="false" restartable="false">
+        <envVars>
+          <envVar name="STREAMS_JAVA_HOME" value="/opt/ibm/java-x86_64-60"/>
+        </envVars>
+        <executable digest="BrHUS6jCCxvWptyM7LYzmnqYfOE=" dynamicLoad="true">
+          <wrapper>none</wrapper>
+          <executableUri>bin/application.twitterdemo-b.dpe</executableUri>
+          <arguments/>
+          <dependencies/>
+        </executable>
+        <operInstances>
+          <operInstance class="Sink" definitionIndex="1" index="1" name="Sink" singleThreadedOnInputs="true" singleThreadedOnOutputs="true">
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <inputPorts>
+              <inputPort index="0" isMutable="false" name="TwitterSource_out" tupleTypeIndex="0">
+                <interPeConnection operInstanceIndex="0" oportIndex="0"/>
+              </inputPort>
+            </inputPorts>
+            <outputPorts/>
+          </operInstance>
+        </operInstances>
+        <tracing level="error"/>
+        <inputPorts>
+          <inputPort encoding="LE" index="0" transport="TCP" tupleTypeIndex="0">
+            <staticConnections>
+              <staticConnection oportIndex="0" peIndex="0"/>
+            </staticConnections>
+            <operInstanceConnection iportIndex="0" operInstanceIndex="1"/>
+          </inputPort>
+        </inputPorts>
+        <outputPorts/>
+      </pe>
+    </pes>
+    <operDefinitions>
+      <operDefinition index="0" kind="application::TwitterSource"/>
+      <operDefinition index="1" kind="spl.utility::Custom"/>
+    </operDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/stradmin/labs/twitter-piotr/twitter-demo/application/twitterdemo.spl"/>
+      </sourceUris>
+      <compositeOpers>
+        <compositeOper endLine="18" index="0" kind="application::twitterdemo" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="3" toolkitIndex="0">
+          <description>application::twitterdemo Composite</description>
+        </compositeOper>
+      </compositeOpers>
+      <compositeOperInstances>
+        <compositeOperInstance compositeOperIndex="0" endLine="18" index="2" name="application::twitterdemo" sourceIndex="0" startLine="3">
+          <primitiveOperInstance endLine="10" index="0" kind="application::TwitterSource" name="TwitterSource_out" sourceIndex="0" startLine="6" toolkitIndex="0">
+            <outputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="1" operName="Sink" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+          </primitiveOperInstance>
+          <primitiveOperInstance endLine="16" index="1" kind="spl.utility::Custom" name="Sink" sourceIndex="0" startLine="12" toolkitIndex="1">
+            <inputPorts>
+              <port index="0">
+                <connections>
+                  <connection operIndex="0" operName="TwitterSource_out" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="twitter-demo" uri="file:///home/stradmin/labs/twitter-piotr/twitter-demo" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphereStreams/toolkits/spl" version="1.1.0"/>
+      <toolkit index="2" name="com.ibm.streams.db" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.db" version="1.0.0"/>
+      <toolkit index="3" name="com.ibm.streams.inet" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.inet" version="1.0.0"/>
+      <toolkit index="4" name="com.ibm.streams.mining" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.mining" version="1.0.0"/>
+      <toolkit index="5" name="com.ibm.streams.text" uri="file:///opt/ibm/InfoSphereStreams/toolkits/com.ibm.streams.text" version="1.0.2"/>
+    </toolkits>
+  </application>
+
+</applicationSet>

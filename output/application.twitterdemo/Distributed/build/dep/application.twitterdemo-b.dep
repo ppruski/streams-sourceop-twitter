@@ -1,0 +1,3 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/application.twitterdemo-b.dpe -fPIC -shared $(PEapplication.twitterdemo-b) $(SPL_LDFLAGS)build/pe/BeJwzCc7My44HAAcAAIp.o \
+	    build/operator/Sink.o \
+	    build/type/BeJwrMSk2KS1OLSo2yUnMS88pMs9ILM4oSUwvNilJrSgBALIkAu5.o 

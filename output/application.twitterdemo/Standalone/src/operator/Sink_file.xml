@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>spl.adapter::FileSink</kind>
+    <class>Sink_file</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphereStreams/toolkits/spl/spl/adapter/FileSink</operatorModelDirectory>
+    <applicationDirectory>/home/stradmin/labs/twitter-piotr/streams-sourceop-twitter</applicationDirectory>
+    <dataDirectory>/home/stradmin/labs/twitter-piotr/streams-sourceop-twitter/data</dataDirectory>
+    <outputDirectory>/home/stradmin/labs/twitter-piotr/streams-sourceop-twitter/output/application.twitterdemo/Standalone</outputDirectory>
+    <optimized>false</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../type/BeJwrMSk2KS1OLSo2yUnMS88pMs9ILM4oSUwvNilJrSgBALIkAu5.h"</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants>
+      <runtimeConstant>
+        <name>lit$0</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>"FIFA_World_Cup.txt"</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$1</name>
+        <cppType>SPL::uint32</cppType>
+        <splType>uint32</splType>
+        <value>1</value>
+      </runtimeConstant>
+    </runtimeConstants>
+    <sourceLocation>
+      <file>application/twitterdemo.spl</file>
+      <line>15</line>
+      <column>3</column>
+    </sourceLocation>
+    <productVersion>3.1.0.0</productVersion>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters>
+    <parameter>
+      <name>file</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>true</hasRuntimeConstant>
+          <cppExpression>lit$0</cppExpression>
+          <splExpression>"FIFA_World_Cup.txt"</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>Expression</parameterExpressionMode>
+          <sourceLocation>
+            <file>application/twitterdemo.spl</file>
+            <line>18</line>
+            <column>12</column>
+          </sourceLocation>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>application/twitterdemo.spl</file>
+        <line>18</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>flush</name>
+      <values>
+        <value>
+          <cppType>SPL::uint32</cppType>
+          <splType>uint32</splType>
+          <hasRuntimeConstant>true</hasRuntimeConstant>
+          <cppExpression>lit$1</cppExpression>
+          <splExpression>1</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>application/twitterdemo.spl</file>
+            <line>19</line>
+            <column>13</column>
+          </sourceLocation>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>application/twitterdemo.spl</file>
+        <line>19</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+  </parameters>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMSk2KS1OLSo2yUnMS88pMs9ILM4oSUwvNilJrSgBALIkAu5</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring user,rstring lang,list&lt;ustring&gt; hashtag,rstring text&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>application/twitterdemo.spl</file>
+        <line>15</line>
+        <column>30</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>user</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>lang</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>hashtag</name>
+          <cppType>SPL::list&lt;SPL::ustring &gt;</cppType>
+          <splType>list&lt;ustring&gt;</splType>
+        </attribute>
+        <attribute>
+          <name>text</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="user" type="rstring"/>
+        <tt:attr name="lang" type="rstring"/>
+        <tt:attr name="hashtag">
+          <tt:list elementType="ustring"/>
+        </tt:attr>
+        <tt:attr name="text" type="rstring"/>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts/>
+
+</operatorInstanceModel>

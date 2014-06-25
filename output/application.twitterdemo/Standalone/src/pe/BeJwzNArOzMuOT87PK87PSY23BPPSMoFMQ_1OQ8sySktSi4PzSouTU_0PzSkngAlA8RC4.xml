@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<peModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/pe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <class>BeJwzNArOzMuOT87PK87PSY23BPPSMoFMQ_1OQ8sySktSi4PzSouTU_0PzSkngAlA8RC4</class>
+    <nlLocation location="Install" path="/toolkits/com.ibm.streams.db" toolkitName="com.ibm.streams.db"/>
+    <nlLocation location="Install" path="/toolkits/com.ibm.streams.inet" toolkitName="com.ibm.streams.inet"/>
+    <nlLocation location="Install" path="/toolkits/com.ibm.streams.mining" toolkitName="com.ibm.streams.mining"/>
+    <javaVM>
+      <vmArgs/>
+    </javaVM>
+    <avoidRuntimeYield>Auto</avoidRuntimeYield>
+  </context>
+
+  <operators>
+    <operator>
+      <class>Sink_console</class>
+    </operator>
+    <operator>
+      <class>Sink_file</class>
+    </operator>
+    <operator>
+      <class>TwitterSource_out</class>
+    </operator>
+  </operators>
+
+</peModel>

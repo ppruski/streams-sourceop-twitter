@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<peModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/pe" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <class>BeJwzNA8pzywpSS0Kzi8tSk6Nzy8tiQcATt0HDj</class>
+    <nlLocation location="Install" path="/toolkits/com.ibm.streams.db" toolkitName="com.ibm.streams.db"/>
+    <nlLocation location="Install" path="/toolkits/com.ibm.streams.inet" toolkitName="com.ibm.streams.inet"/>
+    <nlLocation location="Install" path="/toolkits/com.ibm.streams.mining" toolkitName="com.ibm.streams.mining"/>
+    <javaVM>
+      <vmArgs/>
+    </javaVM>
+    <avoidRuntimeYield>Auto</avoidRuntimeYield>
+  </context>
+
+  <operators>
+    <operator>
+      <class>TwitterSource_out</class>
+    </operator>
+  </operators>
+
+</peModel>

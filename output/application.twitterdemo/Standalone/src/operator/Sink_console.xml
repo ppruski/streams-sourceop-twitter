@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>spl.utility::Custom</kind>
+    <class>Sink_console</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphereStreams/toolkits/spl/spl/utility/Custom</operatorModelDirectory>
+    <applicationDirectory>/home/stradmin/labs/twitter-piotr/streams-sourceop-twitter</applicationDirectory>
+    <dataDirectory>/home/stradmin/labs/twitter-piotr/streams-sourceop-twitter/data</dataDirectory>
+    <outputDirectory>/home/stradmin/labs/twitter-piotr/streams-sourceop-twitter/output/application.twitterdemo/Standalone</outputDirectory>
+    <optimized>false</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../type/BeJwrMSk2KS1OLSo2yUnMS88pMs9ILM4oSUwvNilJrSgBALIkAu5.h"</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants/>
+    <sourceLocation>
+      <file>application/twitterdemo.spl</file>
+      <line>23</line>
+      <column>3</column>
+    </sourceLocation>
+    <productVersion>3.1.0.0</productVersion>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters/>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMSk2KS1OLSo2yUnMS88pMs9ILM4oSUwvNilJrSgBALIkAu5</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring user,rstring lang,list&lt;ustring&gt; hashtag,rstring text&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>application/twitterdemo.spl</file>
+        <line>23</line>
+        <column>31</column>
+      </sourceLocation>
+      <tupleLogic>::SPL::Functions::Utility::println(iport$0);
+</tupleLogic>
+      <attributes>
+        <attribute>
+          <name>user</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>lang</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>hashtag</name>
+          <cppType>SPL::list&lt;SPL::ustring &gt;</cppType>
+          <splType>list&lt;ustring&gt;</splType>
+        </attribute>
+        <attribute>
+          <name>text</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="user" type="rstring"/>
+        <tt:attr name="lang" type="rstring"/>
+        <tt:attr name="hashtag">
+          <tt:list elementType="ustring"/>
+        </tt:attr>
+        <tt:attr name="text" type="rstring"/>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts/>
+
+</operatorInstanceModel>

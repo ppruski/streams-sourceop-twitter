@@ -1,0 +1,5 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/application.twitterdemo-a.dpe -fPIC -shared $(PEapplication.twitterdemo-a) -lstreams-stdtk-javaop -L /opt/ibm/java-x86_64-60/jre/lib/amd64/j9vm -Wl,-rpath -Wl,/opt/ibm/java-x86_64-60/jre/lib/amd64/j9vm -lpthread -ldl -lstreams-stdtk-runtime -lstreams-stdtk-runtime $(SPL_LDFLAGS)build/pe/BeJwzNArOzMuOT87PK87PSY23BPPSMoFMQ_1OQ8sySktSi4PzSouTU_0PzSkngAlA8RC4.o \
+	    build/operator/TwitterSource_out.o \
+	    build/type/BeJwrMSk2KS1OLSo2yUnMS88pMs9ILM4oSUwvNilJrSgBALIkAu5.o \
+	    build/operator/Sink_file.o \
+	    build/operator/Sink_console.o 
